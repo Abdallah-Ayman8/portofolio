@@ -11,7 +11,6 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
   const scrollTimeout = useRef(null);
   const { scrollY } = useScroll();
 
@@ -25,15 +24,8 @@ export default function Header() {
   });
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1024px)");
-    const updateDesktopState = () => setIsDesktop(mediaQuery.matches);
-
-    updateDesktopState();
-    mediaQuery.addEventListener("change", updateDesktopState);
-
     return () => {
       window.clearTimeout(scrollTimeout.current);
-      mediaQuery.removeEventListener("change", updateDesktopState);
     };
   }, []);
 
@@ -41,7 +33,7 @@ export default function Header() {
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{
-        y: isDesktop && isScrolling ? -88 : 0,
+        y: isScrolling ? -88 : 0,
         x: scrolled ? "-50%" : "0%",
         opacity: 1,
       }}
