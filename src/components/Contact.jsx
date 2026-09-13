@@ -2,7 +2,26 @@
 
 import { ArrowUpRight, Mail } from "lucide-react";
 
+const whatsappNumber = "201278699198";
+
 export default function Contact() {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const message = [
+      `Name: ${formData.get("name") || "Not provided"}`,
+      `Email: ${formData.get("email") || "Not provided"}`,
+      `Project: ${formData.get("project") || "Not provided"}`,
+    ].join("\n");
+
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  }
+
   return (
     <section
       id="contact"
@@ -44,13 +63,14 @@ export default function Contact() {
       </div>
       <form
         className="grid content-center gap-4 rounded-lg border border-[#282621] bg-[#191815] p-4 font-[var(--font-geist-sans)] sm:p-5 lg:p-6"
-        onSubmit={(event) => event.preventDefault()}
+        onSubmit={handleSubmit}
       >
         <div className="grid grid-cols-1 gap-[10px] sm:grid-cols-2">
           <label className="grid gap-[7px] text-[10px] text-[#c7c1b8]">
             Your name
             <input
               className="w-full rounded-md border border-[#25231f] bg-[#11110f] p-[11px] text-[11px] text-[#f1eee8] outline-none focus:border-[#ff5b1b]"
+              name="name"
               placeholder="What should I call you?"
             />
           </label>
@@ -58,6 +78,7 @@ export default function Contact() {
             Email address
             <input
               className="w-full rounded-md border border-[#25231f] bg-[#11110f] p-[11px] text-[11px] text-[#f1eee8] outline-none focus:border-[#ff5b1b]"
+              name="email"
               type="email"
               placeholder="you@company.com"
             />
@@ -67,6 +88,7 @@ export default function Contact() {
           About the project
           <textarea
             className="w-full resize-y rounded-md border border-[#25231f] bg-[#11110f] p-[11px] text-[11px] text-[#f1eee8] outline-none focus:border-[#ff5b1b]"
+            name="project"
             placeholder="What are we building, and where does it stand today?"
             rows="5"
           />
