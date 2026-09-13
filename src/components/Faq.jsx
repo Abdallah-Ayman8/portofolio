@@ -29,7 +29,9 @@ export default function Faq() {
               Drop me a line. No forms, no waiting.
             </p>
             <a
-              href="#contact"
+              href="https://wa.me/201278699198"
+              target="_blank"
+              rel="noreferrer"
               className="mt-[17px] flex justify-between border-t border-[#292824] pt-[10px] text-[10px]"
             >
               Ask me directly <ArrowUpRight size={14} />

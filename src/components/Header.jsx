@@ -40,12 +40,16 @@ export default function Header() {
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
-      animate={{ y: isDesktop && isScrolling ? -88 : 0, opacity: 1 }}
+      animate={{
+        y: isDesktop && isScrolling ? -88 : 0,
+        x: scrolled ? "-50%" : "0%",
+        opacity: 1,
+      }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`fixed left-0 right-0 top-0 z-50 backdrop-blur-xl backdrop-saturate-150 transition-[background-color,box-shadow] duration-300 ${scrolled ? "bg-[#0b0b0ae6] shadow-[0_12px_35px_#00000055]" : "bg-[#0b0b0a99]"}`}
+      className={`fixed z-50 backdrop-blur-xl backdrop-saturate-150 transition-[background-color,box-shadow,border-radius,top,width] duration-300 ${scrolled ? "left-1/2 top-3 w-[calc(100%-24px)] max-w-[1080px] rounded-2xl bg-[#0b0b0a99] shadow-[0_12px_35px_#00000055] backdrop-blur-2xl backdrop-saturate-200" : "left-0 top-0 w-full bg-[#0b0b0a99]"}`}
     >
       <nav
-        className={`relative z-10 mx-auto flex h-16 w-[min(100%-48px,1080px)] items-center justify-between text-[12px] text-[#fff8ef] drop-shadow-[0_1px_2px_#00000099] ${sans}`}
+        className={`relative z-10 mx-auto flex h-16 items-center justify-between text-[12px] text-[#fff8ef] drop-shadow-[0_1px_2px_#00000099] ${scrolled ? "w-full px-5 sm:px-6" : "w-[min(100%-48px,1080px)]"} ${sans}`}
       >
         <a
           href="#top"
@@ -71,7 +75,7 @@ export default function Header() {
           ))}
         </div>
         <div className="hidden items-center gap-5 text-[#fff0e5] lg:flex">
-          <span>Front-End Developer · SHA Academy</span>
+          <span>Front-End Developer · SHA Academy </span>
           <a
             className="inline-flex items-center gap-[9px] rounded-full bg-[#f1eee8] px-[15px] py-[10px] text-[#131210]"
             href="#contact"
@@ -88,8 +92,8 @@ export default function Header() {
         </button>
       </nav>
       <motion.div
-        className="absolute bottom-0 left-0 right-0 h-px origin-center bg-[#ff5b1b]"
-        animate={{ scaleX: isScrolling ? 0 : 1, opacity: isScrolling ? 0 : 1 }}
+        className={`${scrolled ? "hidden" : "absolute bottom-0 left-0 right-0 h-px rounded-b-2xl bg-[#ff5b1b]"}`}
+        animate={{ scaleX: 1, opacity: 1 }}
         transition={{ duration: 0.2, ease: "easeOut" }}
         aria-hidden="true"
       />

@@ -103,7 +103,7 @@ export default function Hero() {
               <strong className="text-[10px]">
                 abdallahayman.dev@gmail.com
               </strong>
-              <small className="text-[#ab6f5a]">Studying at SHA Academy</small>
+              <small className="text-[#ab6f5a]">Studying at SHA Academy </small>
             </div>
             <a
               href="#contact"
