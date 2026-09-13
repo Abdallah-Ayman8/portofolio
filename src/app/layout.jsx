@@ -15,6 +15,10 @@ export const metadata = {
   title: "Abdallah Ayman | Front-End Developer",
   description:
     "Abdallah Ayman is a Front-End Developer and Computer Science student building modern, responsive and user-focused web experiences with React, Next.js and Tailwind CSS.",
+  icons: {
+    icon: [{ url: "/profile.png?v=6", type: "image/png" }],
+    shortcut: [{ url: "/profile.png?v=6", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({ children }) {
